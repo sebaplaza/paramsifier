@@ -21,7 +21,7 @@ jobs:
         with:
           version: latest
           run_install: true
-      - run: pnpm ci
+      - run: pnpm lint
   test:
     runs-on: ubuntu-22.04
     steps:
@@ -33,4 +33,4 @@ jobs:
         with:
           version: latest
           run_install: true
-      - run: pnpm test
+      - run: pnpm coverage
