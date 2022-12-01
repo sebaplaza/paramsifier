@@ -32,6 +32,5 @@ parseParameterList(myFunction.toString());
 
 ## Credits
 
-Original parsed code has [been extracted](https://github.com/jeffijoe/awilix/issues/307) from [awilix](https://github.com/jeffijoe/awilix) param-parser. Thanks @jeffijoe
-
-Thanks @
+Original parsed code has [been extracted](https://github.com/jeffijoe/awilix/issues/307) from [awilix](https://github.com/jeffijoe/awilix) param-parser. 
+Thanks @jeffijoe
