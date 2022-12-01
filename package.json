@@ -1,6 +1,6 @@
 {
 	"name": "paramsifier",
-	"version": "1.0.0",
+	"version": "0.0.1",
 	"description": "Parameter parser, can handle functions and classes",
 	"main": "dist/index.js",
 	"scripts": {
