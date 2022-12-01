@@ -13,7 +13,8 @@
 		"rome:format": "rome format src/** --write"
 	},
 	"keywords": [],
-	"author": "Sebastian Plaza <sebastianplaza@gmail.com>",
+	"author": "Jeff Hansen <jeff@jeffijoe.com>",
+	"contributors": ["Sebastian Plaza <sebastianplaza@gmail.com>"]
 	"license": "ISC",
 	"devDependencies": {
 		"@tsconfig/node16": "^1.0.3",
