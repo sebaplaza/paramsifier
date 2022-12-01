@@ -4,7 +4,7 @@
 	"description": "Parameter parser, can handle functions and classes",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "tsc --build",
+		"build": "tsc --build --clean && tsc --build",
 		"lint": "rome ci src/** && tsc --noEmit",
 		"fix": "pnpm rome:check && pnpm rome:format",
 		"test": "vitest",
@@ -16,6 +16,7 @@
 	"author": "Sebastian Plaza <sebastianplaza@gmail.com>",
 	"license": "ISC",
 	"devDependencies": {
+		"@tsconfig/node16": "^1.0.3",
 		"@vitest/coverage-c8": "^0.25.3",
 		"rome": "^10.0.1",
 		"typescript": "^4.9.3",

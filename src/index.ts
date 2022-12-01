@@ -1,1 +1,1 @@
-export * as paramsifier from "./param-parser";
+export * from "./param-parser";
