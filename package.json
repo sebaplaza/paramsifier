@@ -1,0 +1,24 @@
+{
+	"name": "paramsifier",
+	"version": "1.0.0",
+	"description": "Parameter parser, can handle functions and classes",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc --build",
+		"lint": "rome ci src/** && tsc --noEmit",
+		"fix": "pnpm rome:check && pnpm rome:format",
+		"test": "vitest",
+		"coverage": "vitest --coverage",
+		"rome:check": "rome check src/** --apply-suggested",
+		"rome:format": "rome format src/** --write"
+	},
+	"keywords": [],
+	"author": "Sebastian Plaza <sebastianplaza@gmail.com>",
+	"license": "ISC",
+	"devDependencies": {
+		"@vitest/coverage-c8": "^0.25.3",
+		"rome": "^10.0.1",
+		"typescript": "^4.9.3",
+		"vitest": "^0.25.3"
+	}
+}
