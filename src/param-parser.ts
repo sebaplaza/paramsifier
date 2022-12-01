@@ -24,15 +24,15 @@ export interface Parameter {
  * Returns an array of parameters, or `null` if no
  * constructor was found for a class.
  */
-export function parseParameterList(source: string): Array<Parameter> | null {
+export function parseParameterList(source: string): Parameter[] | null {
 	const { next: _next, done } = createTokenizer(source);
-	const params: Array<Parameter> = [];
+	const params: Parameter[] = [];
 
 	let t: Token = null!;
 	nextToken();
 	while (!done()) {
 		switch (t.type) {
-			case "class":
+			case "class": {
 				skipUntilConstructor();
 				// If we didn't find a constructor token, then we know that there
 				// are no dependencies in the defined class.
@@ -42,21 +42,24 @@ export function parseParameterList(source: string): Array<Parameter> | null {
 				// Next token is the constructor identifier.
 				nextToken();
 				break;
-			case "function":
+			}
+			case "function": {
 				const next = nextToken();
 				if (next.type === "ident" || next.type === "*") {
 					// This is the function name or a generator star. Skip it.
 					nextToken();
 				}
 				break;
-			case "(":
+			}
+			case "(": {
 				// Start parsing parameter names.
 				parseParams();
 				break;
+			}
 			case ")":
 				// We're now out of the parameter list.
 				return params;
-			case "ident":
+			case "ident": {
 				// Likely a paren-less arrow function
 				// which can have no default args.
 				const param = { name: t.value!, optional: false };
@@ -71,6 +74,7 @@ export function parseParameterList(source: string): Array<Parameter> | null {
 				}
 				params.push(param);
 				return params;
+			}
 			/* istanbul ignore next */
 			default:
 				throw unexpected();
@@ -89,21 +93,25 @@ export function parseParameterList(source: string): Array<Parameter> | null {
 		while (!done()) {
 			nextToken();
 			switch (t.type) {
-				case "ident":
+				case "ident": {
 					param.name = t.value!;
 					break;
-				case "=":
+				}
+				case "=": {
 					param.optional = true;
 					break;
-				case ",":
+				}
+				case ",": {
 					params.push(param);
 					param = { name: "", optional: false };
 					break;
-				case ")":
+				}
+				case ")": {
 					if (param.name) {
 						params.push(param);
 					}
 					return;
+				}
 				/* istanbul ignore next */
 				default:
 					throw unexpected();
@@ -115,7 +123,7 @@ export function parseParameterList(source: string): Array<Parameter> | null {
 	 * Skips until we reach the constructor identifier.
 	 */
 	function skipUntilConstructor() {
-		while (!isConstructorToken() && !done()) {
+		while (!(isConstructorToken() || done())) {
 			nextToken(TokenizerFlags.Dumb);
 		}
 	}
@@ -144,7 +152,7 @@ export function parseParameterList(source: string): Array<Parameter> | null {
 		return new SyntaxError(
 			`Parsing parameter list, did not expect ${t.type} token${
 				t.value ? ` (${t.value})` : ""
-			}`
+			}`,
 		);
 	}
 }
